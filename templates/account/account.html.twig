@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Użytkownik: {{ user.name }}{% endblock %}
+
+{% block body %}
+<div class="row col my-3">
+    <div class="col">
+        <h3>Witaj {{ user.name }}!</h3>
+    </div>
+    <div class="col text-right">
+        <a href="/">
+            <button class="btn btn-outline-dark">Wyloguj</button>
+        </a>
+    </div>
+</div>
+<hr>
+<div class="row justify-content-center">
+    <div class="col-5">
+        <h5>Twój profil</h5>
+        <ul class="list-group col">
+            <li class="list-group-item text-secondary font-size-small">Imię: <span class="text-dark">{{user.name}}</span></li>
+            <li class="list-group-item text-secondary font-size-small">Nazwisko: <span class="text-dark">{{user.lastname}}</span></li>
+            <li class="list-group-item text-secondary font-size-small">Email: <span class="text-dark">{{user.email}}</span></li>
+            <li class="list-group-item text-secondary font-size-small">Telefon: <span class="text-dark">{{user.phone}}</span></li>
+        </ul>  
+    </div>
+    
+</div>
+{% endblock %}

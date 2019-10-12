@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th class="p-1">Id</th>
+                <th class="p-1">Login</th>
+                <th class="p-1">Password</th>
+                <th class="p-1">Name</th>
+                <th class="p-1">Lastname</th>
+                <th class="p-1">Email</th>
+                <th class="p-1">Phone</th>
+                <th class="p-1 text-center" style="min-width: 150px;">actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td class="p-1">{{ user.id }}</td>
+                <td class="p-1">{{ user.login }}</td>
+                <td class="p-1">{{ user.password }}</td>
+                <td class="p-1">{{ user.name }}</td>
+                <td class="p-1">{{ user.lastname }}</td>
+                <td class="p-1">{{ user.email }}</td>
+                <td class="p-1">{{ user.phone }}</td>
+                <td class="p-1 text-center">
+                    <a href="{{ path('user_show', {'id': user.id}) }}" class="btn btn-outline-info">show</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-outline-warning">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_new') }}" class="btn btn-outline-primary m-1">Create new</a>
+{% endblock %}

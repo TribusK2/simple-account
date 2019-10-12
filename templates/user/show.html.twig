@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table-striped">
+        <tbody>
+            <tr>
+                <th class="p-1">Id</th>
+                <td class="p-1">{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th class="p-1">Login</th>
+                <td class="p-1">{{ user.login }}</td>
+            </tr>
+            <tr>
+                <th class="p-1">Password</th>
+                <td class="p-1">{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th class="p-1">Name</th>
+                <td class="p-1">{{ user.name }}</td>
+            </tr>
+            <tr>
+                <th class="p-1">Lastname</th>
+                <td class="p-1">{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th class="p-1">Email</th>
+                <td class="p-1">{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th class="p-1">Phone</th>
+                <td class="p-1">{{ user.phone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_index') }}" class="btn btn-outline-info m-1">back to list</a>
+
+    <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-outline-warning m-1">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

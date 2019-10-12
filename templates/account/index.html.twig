@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panel logowania{% endblock %}
+
+{% block body %}
+    <div class="row justify-content-center my-5">
+        <div class="col-8 col-md-6 col-lg-4">
+            <h3>Zaloguj się</h3>
+            {{ form_start(LoginForm, {'attr': {'id': 'loginForm'}}) }}
+
+                {{ form(LoginForm) }}   
+
+            {{ form_end(LoginForm) }}
+            <a href="/newAcc">Załóż konto</a>
+        </div>
+    </div> 
+{% endblock %}
