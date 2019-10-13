@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -20,7 +19,7 @@ class AccountController extends AbstractController
     /**
      * @Route("/account/{id}", name="account")
      */
-    public function account(Request $request, $id)
+    public function account($id)
     {
         // sesion verification
         if(!$this->session->get('login')){

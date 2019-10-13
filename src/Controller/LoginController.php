@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\User;
 use App\Form\LoginFormType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Form\FormError;
 
 class LoginController extends AbstractController
@@ -20,9 +19,9 @@ class LoginController extends AbstractController
         $this->session = $session;
     }
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", methods={"GET","POST"})
      */
-    public function index(Request $request, ValidatorInterface $validator)
+    public function index(Request $request)
     {
         $this->session->remove('login');
 

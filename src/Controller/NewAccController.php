@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormError;
 class NewAccController extends AbstractController
 {
     /**
-     * @Route("/newAcc", name="newAcc")
+     * @Route("/newAcc", name="newAcc", methods={"GET","POST"})
      */
     public function newAcc(Request $request)
     {
@@ -57,7 +57,7 @@ class NewAccController extends AbstractController
                 $em->flush();
                 
                 // Redirect to info page
-                // return $this->render('account/send.html.twig');
+                return $this->render('account/send.html.twig');
             }
         }
 
