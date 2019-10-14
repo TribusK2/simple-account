@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +23,7 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository)
+    public function userIndex(UserRepository $userRepository)
     {
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer(), new ArrayDenormalizer()];
@@ -37,18 +36,12 @@ class UserController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->setContent($jsonContent);
 
-        // $json = $serializer->deserialize($jsonContent, 'App\Entity\User[]', 'json');
-// var_dump($jsonContent);
-        // return $this->render('user/index.html.twig', [
-            // 'users' => json_decode($jsonContent),
-            // 'users' => $jsonContent,
-        // ]);    
         return new Response($response);
         
     }
 
     /**
-     * @Route("/new", name="user_new", methods={"GET","POST"})
+     * @Route("/new", name="user_new", methods={"POST"})
      */
     public function new(Request $request)
     {      
@@ -95,24 +88,6 @@ class UserController extends AbstractController
             $response->setData(['message' => $message]);
         };
 
-
-        // $user = new User();
-        // $form = $this->createForm(UserType::class, $user);
-        // $form->handleRequest($request);
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $entityManager = $this->getDoctrine()->getManager();
-        //     $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
-        //     $entityManager->persist($user);
-        //     $entityManager->flush();
-
-        //     return $this->redirectToRoute('user_index');
-        // }
-
-        // return $this->render('user/new.html.twig', [
-        //     'user' => $user,
-        //     'form' => $form->createView(),
-        // ]);
         return new Response($response);
     }
 
@@ -133,14 +108,11 @@ class UserController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         $response->setContent($jsonContent);
 
-        // return $this->render('user/show.html.twig', [
-        //     'user' => json_decode($jsonContent),
-        // ]);
         return new Response($response);
     }
 
     /**
-     * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     * @Route("/{id}", name="user_edit", methods={"POST"})
      */
     public function edit(Request $request, User $user, $id)
     {
@@ -184,22 +156,7 @@ class UserController extends AbstractController
             $response->setData(['message' => $message]);
         };
 
-        // $form = $this->createForm(UserType::class, $user);
-        // $form->handleRequest($request);
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
-        //     $this->getDoctrine()->getManager()->flush();
-
-        //     return $this->redirectToRoute('user_index');
-        // }
-
         return new Response($response);
-
-        // return $this->render('user/edit.html.twig', [
-        //     'user' => $user,
-        //     'form' => $form->createView(),
-        // ]);
     }
 
     /**
@@ -210,17 +167,11 @@ class UserController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($user);
         $entityManager->flush();
-        $message = 'Użytkownik został usunięty z bazy dabych';
+        $message = 'Użytkownik został usunięty z bazy danych';
 
-        // if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
-        //     $entityManager = $this->getDoctrine()->getManager();
-        //     $entityManager->remove($user);
-        //     $entityManager->flush();
-        // }
         $response = new JsonResponse();
         $response->setData(['message' => $message]);
 
         return new Response($response);
-        // return $this->redirectToRoute('user_index');
     }
 }
